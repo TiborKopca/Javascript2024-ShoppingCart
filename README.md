@@ -5,6 +5,7 @@
 - Removing items from the shopping cart
 - Clearing the shopping cart
 - Quantity of items in the shopping cart
+- Storing data in local storage
 
 ## Screenshot
 ![here](/screenshot/JS-2024-ShoppingCart.png)

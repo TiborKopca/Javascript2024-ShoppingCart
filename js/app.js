@@ -17,6 +17,13 @@ function cargarEventListeners() {
 
   // Al Vaciar el carrito
   vaciarCarritoBtn.addEventListener("click", vaciarCarrito);
+
+  //LOAD FROM LOCAL STORAGE
+  document.addEventListener("DOMContentLoaded", () => {
+    articulosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    // console.log(articulosCarrito);
+    carritoHTML();
+  });
 }
 
 // Funciones
@@ -63,11 +70,10 @@ function leerDatosCurso(curso) {
     //IF THE PRODUCT WAS NOT IN THE CART, ADD IT TO THE END OF THE ARRAY
     articulosCarrito = [...articulosCarrito, infoCurso];
 
-
     //HERE MULTIPLE VARIATIONS OF PRINTING THE ARRAY
-    console.table(articulosCarrito); 
-    console.log('array articulosCarrito: %O', articulosCarrito ) //array articulosCarrito: Array(1)
-    console.log('array1', articulosCarrito ) //array1 [{…}]
+    console.table(articulosCarrito);
+    console.log("array articulosCarrito: %O", articulosCarrito); //array articulosCarrito: Array(1)
+    console.log("array1", articulosCarrito); //array1 [{…}]
   }
   //PRINTING THE NEW DATA TO DOM
   carritoHTML();
@@ -111,6 +117,13 @@ function carritoHTML() {
           `;
     contenedorCarrito.appendChild(row);
   });
+  //Sync with local storage
+  synchLocalStorage();
+}
+
+//SYNC WITH LOCAL STORAGE
+function synchLocalStorage() {
+localStorage.setItem("carrito", JSON.stringify(articulosCarrito));
 }
 
 // Elimina los cursos del carrito en el DOM
